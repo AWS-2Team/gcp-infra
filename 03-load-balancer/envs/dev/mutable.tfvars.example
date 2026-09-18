@@ -1,0 +1,1 @@
+web_paths = ["/resources/*", "/nginx-health"]

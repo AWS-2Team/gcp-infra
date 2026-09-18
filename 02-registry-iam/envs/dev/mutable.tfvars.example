@@ -1,0 +1,4 @@
+cloud_run_display_name            = "PetClinic DR Cloud Run 실행 계정"
+cloud_run_web_display_name        = "PetClinic DR Web 실행 계정"
+artifact_registry_description     = "PetClinic DR App 컨테이너 이미지 저장소"
+artifact_registry_web_description = "PetClinic DR Web 컨테이너 이미지 저장소"

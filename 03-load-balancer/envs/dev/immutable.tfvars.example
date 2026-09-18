@@ -1,0 +1,9 @@
+project_id = "kdt4-2-506106"
+region     = "asia-northeast3"
+project    = "last-lab"
+env        = "dev"
+
+cloud_run_services = {
+  app = "last-lab-dev-dr-app"
+  web = "last-lab-dev-dr-web"
+}

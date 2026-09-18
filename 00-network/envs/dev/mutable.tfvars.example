@@ -1,0 +1,4 @@
+# 계획값입니다. 생성 후에는 기존 범위를 포함하는 확장만 무교체로 가능합니다.
+subnet_cidr              = "10.20.0.0/26"
+routing_mode             = "REGIONAL"
+private_ip_google_access = true

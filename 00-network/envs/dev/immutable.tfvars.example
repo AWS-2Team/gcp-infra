@@ -1,0 +1,7 @@
+project_id           = "kdt4-2-506106"
+region               = "asia-northeast3"
+project              = "last-lab"
+env                  = "dev"
+router_asn           = 64514
+# 계획값입니다. 적용 전 기존 GCP 및 AWS 대역과 중복 여부를 확인합니다.
+psa_cidr = "10.30.0.0/16"

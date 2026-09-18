@@ -1,0 +1,11 @@
+project_id = "kdt4-2-506106"
+region     = "asia-northeast3"
+project    = "last-lab"
+env        = "dev"
+
+# AWS VPN 생성 후 실제 값으로 채웁니다. 빈 맵은 검증 오류로 차단됩니다.
+# 키 "0", "1": AWS VPN 연결 하나의 터널 1, 2 (둘 다 GCP 인터페이스 0)
+# GCP 인터페이스 1은 사용하지 않습니다.
+# 각 항목: external_ip, gcp_bgp_cidr (고객 측 내부 IP/30), aws_bgp_ip,
+# secret_version (최초 "1", PSK 교체 시 증가)
+tunnels = {}

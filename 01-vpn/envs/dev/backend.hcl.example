@@ -1,0 +1,3 @@
+# 00-network과 같은 버킷, 별도의 State prefix입니다.
+bucket = "last-lab-poc-tf-state"
+prefix = "dev/vpn"

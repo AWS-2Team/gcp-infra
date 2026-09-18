@@ -1,0 +1,2 @@
+peer_asn                  = 64512
+advertised_route_priority = 100

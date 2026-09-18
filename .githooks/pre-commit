@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# .env 계열 파일이 커밋에 포함되면 차단한다. GitHub 에 시크릿이 올라가는 것을 막는다.
+# 활성화: git config core.hooksPath .githooks
+
+set -euo pipefail
+
+staged=$(git diff --cached --name-only --diff-filter=ACM)
+
+blocked=$(printf '%s\n' "$staged" \
+  | grep -Ei '(^|/)(\.env(\..+)?|[^/]+\.env)$' \
+  | grep -viE '\.env\.example$' || true)
+
+if [ -n "$blocked" ]; then
+  echo "커밋 차단: env 계열 파일은 GitHub 에 올릴 수 없습니다." >&2
+  printf '%s\n' "$blocked" | sed 's/^/  - /' >&2
+  echo "스테이지에서 제외하고(.gitignore 확인) 다시 커밋하세요." >&2
+  exit 1
+fi
