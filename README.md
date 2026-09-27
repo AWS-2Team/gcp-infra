@@ -1,5 +1,29 @@
 # GCP DR 인프라 배포
 
+## 신규 GKE 구축
+
+신규 구축은 아래 실행 단위를 사용합니다. 전체 준비, 입력값 선택, AWS 연결, 데이터베이스 내부 준비와 GitOps 배포는 [전체 구축 런북](../../AWS-2Team-Personal/project-scrap/runbooks/dr-gke-terraform-00-contents.md)을 따릅니다. 관리 경계는 [ADR-0014](../../AWS-2Team-Personal/project-scrap/adr/adr-0014-gcp-dr-resource-ownership.md)가 기준입니다.
+
+| 실행 폴더 | 관리 대상 |
+|---|---|
+| `05-bootstrap` | 신규 State 버킷과 접근 권한, API 활성화, 기본 로그 보관. 별도 로컬 State를 보관 |
+| `10-network` | 네트워크, Pod/Service 보조 대역, Cloud SQL 사설 연결, VPN gateway/router, Cloud NAT |
+| `11-vpn` | 개인 AWS 연결 출력으로 두 터널과 라우팅 세션 생성 |
+| `20-gke` | 사설 노드, DNS 전용 관리 접점, 서비스 계정, 노드 풀과 자동 확장 경계 |
+| `21-cloud-sql` | 업무 복구 단위별 MySQL, 백업, 삭제 보호, 저장 공간 경보 |
+| `30-service-foundation` | 서비스 계정, 이미지 저장소, Secret 보관 자원과 접근 정책 |
+| `40-edge` | 고정 공인 주소, 인증서와 인증서 검증용 DNS 이름. 실제 부하 분산기는 GKE Gateway 소유 |
+
+입력 예제는 각 폴더의 `envs/dev/*.tfvars.example`에 있습니다. 미확정 사양은 예제이며 실제 적용값이 아닙니다. `project`는 이름용 식별자, `project_id`는 실제 Google 프로젝트 식별자입니다. 신규 이름은 `<project>-<env>-dr-<용도>`, 기본값은 `last-lab-dev-dr`입니다.
+
+각 `backend.hcl.example`은 새 `gke/<project>/<env>/<layer>/<target>` 공간을 요구합니다. 데이터베이스는 복구 단위마다 다른 backend를 사용합니다. 다른 State 경로만 선택했다고 기존 동일 이름 자원을 생성하거나 편입할 수 있는 것은 아닙니다. 자원과 소유 State를 먼저 조회하고 불명확하면 생성 전에 멈춥니다.
+
+복제 endpoint와 작업 정의는 비밀 없는 설정 파일과 공식 CLI로 생성합니다. 이 구축 단계는 복제 시작 전 상태에서 끝납니다. 실제 통신, 복제 및 앱 요청 검증은 후속 작업입니다.
+
+## 기존 Cloud Run 환경 참고
+
+아래 내용과 `00-network`, `01-vpn`, `02-registry-iam`, `03-load-balancer`, `modules/`는 기존 환경 관리용으로 보존합니다. 신규 GKE 실행 순서에 섞지 않으며 기존 backend key를 신규 코드에 연결하지 않습니다. 아래 Cloud Run 사양과 관리 범위는 신규 GKE의 승인 정책을 대체하지 않습니다.
+
 AWS RDS → GCP Cloud SQL 복제를 위한 사설 네트워크 기반을 구축합니다.
 
 ## DR 인프라 구성도

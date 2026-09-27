@@ -1,0 +1,2 @@
+secret_versions = { tunnel1 = 1, tunnel2 = 1 }
+route_priority = 100

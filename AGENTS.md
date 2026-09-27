@@ -4,6 +4,12 @@
 
 ## 이 저장소
 
+- 신규 GKE 구축은 승인된 ADR-0014에 따라 `05-bootstrap`, `10-network`, `11-vpn`, `20-gke`, `21-cloud-sql`, `30-service-foundation`, `40-edge`를 사용합니다. root에 직접 선언하고 서비스 운영을 Terraform provisioner로 감싸지 않습니다.
+- 기존 Cloud Run 네 root와 모듈은 기존 환경 관리용으로 보존합니다. 신규 root에 기존 State prefix를 재사용하지 않습니다. 신규 prefix는 `gke/<project>/<env>/<layer>/<target>`이며 데이터는 업무 복구 단위별로 분리합니다.
+- 신규 secret 값은 ephemeral/write-only 입력 또는 별도 운영 경로만 사용합니다. Secret 버전, DMS endpoint/task, Kubernetes/Helm 자원은 신규 Terraform 범위 밖입니다.
+- 신규 root의 비밀 없는 출력 계약은 운영자가 선택한 입력 파일로 전달합니다. 양쪽 클라우드 State를 서로 참조하거나 정상 절차에서 `-target`을 요구하지 않습니다.
+- 전체 구축 절차와 설명 문서는 사용자 지정 `AWS-2Team-Personal/project-scrap`에 보관합니다. 아래 기존 팀 문서 경로 규칙보다 현재 사용자 지정 위치를 우선합니다.
+
 - `modules/`: 재사용 모듈 (`network`, `vpn`). 네트워크 모듈의 Terraform 호출 이름은 기존 State 주소를 유지하도록 `backbone`을 사용합니다.
 - `00-network`, `01-vpn`, `02-registry-iam`, `03-load-balancer`: 레이어 루트. 앞 번호가 배포 순서이고 각자 별도의 GCS State prefix를 가집니다. `03-load-balancer` 적용 전에 Cloud Run 서비스를 CLI로 배포합니다.
 - 배포 순서와 명령은 `README.md` 에 있습니다.

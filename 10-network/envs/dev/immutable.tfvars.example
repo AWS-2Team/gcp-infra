@@ -1,0 +1,9 @@
+project_id = "<GOOGLE_PROJECT_ID>"
+region = "<GOOGLE_REGION>"
+project = "last-lab"
+env = "dev"
+
+# EXAMPLES ONLY: replace after surveying all connected address spaces.
+cidrs = { nodes = "10.80.0.0/24", pods = "10.81.0.0/20", services = "10.82.0.0/24", sql = "10.83.0.0/16" }
+aws_cidrs = ["10.0.0.0/16"]
+router_asn = 64514

@@ -1,0 +1,8 @@
+project_id = "<GOOGLE_PROJECT_ID>"
+region = "<GOOGLE_REGION>"
+project = "last-lab"
+env = "dev"
+
+state_bucket_name = "<NEW_GLOBALLY_UNIQUE_BUCKET>"
+state_location = "<BUCKET_LOCATION>"
+state_admin_members = ["user:<OPERATOR_EMAIL>"]

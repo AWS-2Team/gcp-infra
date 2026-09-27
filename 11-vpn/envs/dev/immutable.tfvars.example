@@ -1,0 +1,13 @@
+project_id = "<GOOGLE_PROJECT_ID>"
+region = "<GOOGLE_REGION>"
+project = "last-lab"
+env = "dev"
+
+vpn_foundation = { gateway_id = "<10-network.gateway_id>", router_name = "<10-network.router_name>", asn = 64514 }
+aws_peer = {
+  aws_asn = 64512
+  tunnels = {
+    tunnel1 = { external_ip = "<AWS_TUNNEL_1_IP>", aws_bgp_ip = "<AWS_BGP_1_IP>", gcp_bgp_cidr = "<GCP_BGP_1_IP/30>", psk_secret_arn = "<AWS_SECRET_ARN>" }
+    tunnel2 = { external_ip = "<AWS_TUNNEL_2_IP>", aws_bgp_ip = "<AWS_BGP_2_IP>", gcp_bgp_cidr = "<GCP_BGP_2_IP/30>", psk_secret_arn = "<AWS_SECRET_ARN>" }
+  }
+}

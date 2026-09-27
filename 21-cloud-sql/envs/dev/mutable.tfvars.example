@@ -1,0 +1,12 @@
+# Sizing/retention examples only.
+tier = "db-custom-1-3840"
+availability_type = "ZONAL"
+disk_size_gb = 20
+disk_autoresize_limit_gb = 100
+backup_start_utc = "18:00"
+retained_backups = 7
+transaction_log_retention_days = 7
+maintenance_day = 7
+maintenance_hour_utc = 19
+notification_channels = [] # No notifications until channel IDs are supplied.
+disk_alert_fraction = 0.8

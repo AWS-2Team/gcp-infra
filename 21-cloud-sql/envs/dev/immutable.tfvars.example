@@ -1,0 +1,7 @@
+project_id = "<GOOGLE_PROJECT_ID>"
+region = "<GOOGLE_REGION>"
+project = "last-lab"
+env = "dev"
+
+recovery_unit = "<BUSINESS_RECOVERY_UNIT>"
+network = { id = "<10-network.id>", sql_range_name = "<10-network.sql_range_name>" }

@@ -1,0 +1,4 @@
+services = {
+  "<SERVICE_KEY>" = { account_id = "<VALID_6_TO_30_CHAR_ID>", namespace = "<NAMESPACE>", kubernetes_service_account = "<KSA_NAME>", cloud_sql_access = true, secret_names = ["<SERVICE_KEY>-config"] }
+}
+image_writer_members = { "<SERVICE_KEY>" = ["user:<IMAGE_PUBLISHER_EMAIL>"] }

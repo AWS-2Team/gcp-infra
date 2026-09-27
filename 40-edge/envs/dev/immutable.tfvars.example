@@ -1,0 +1,7 @@
+project_id = "<GOOGLE_PROJECT_ID>"
+region = "<GOOGLE_REGION>"
+project = "last-lab"
+env = "dev"
+
+domains = ["<PUBLIC_APP_HOSTNAME>"]
+dns_zone = null # Or { name = "<CLOUD_DNS_ZONE>", project_id = "<DNS_PROJECT_ID>" }

@@ -1,0 +1,6 @@
+# Sizing examples only, not an approved capacity plan.
+release_channel = "REGULAR"
+maintenance_start_utc = "18:00"
+node_pools = {
+  general = { machine_type = "e2-standard-2", disk_size_gb = 30, initial_nodes = 1, min_nodes = 1, max_nodes = 2, zones = ["<NODE_ZONE>"], spot = false }
+}

@@ -1,0 +1,7 @@
+project_id = "<GOOGLE_PROJECT_ID>"
+region = "<GOOGLE_REGION>"
+project = "last-lab"
+env = "dev"
+
+location = "<CLUSTER_REGION_OR_ZONE>"
+network = { id = "<10-network.id>", subnetwork_id = "<10-network.subnetwork_id>", pods_range_name = "<10-network.pods_range_name>", services_range_name = "<10-network.services_range_name>" }

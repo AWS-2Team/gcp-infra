@@ -1,0 +1,7 @@
+project_id = "<GOOGLE_PROJECT_ID>"
+region = "<GOOGLE_REGION>"
+project = "last-lab"
+env = "dev"
+
+repositories = ["<SERVICE_KEY>"]
+secret_names = ["<SERVICE_KEY>-config"]

@@ -3,10 +3,16 @@
 **/*.tfstate
 **/*.tfstate.*
 **/*.tfvars
+**/*.tfvars.json
 !**/*.tfvars.example
 **/backend.hcl
 !**/backend.hcl.example
 **/*.tfplan
+**/tfplan
+**/tfplan.*
+**/*plan.json
+**/.work/
+**/__pycache__/
 **/crash.log
 
 # OS / IDE
